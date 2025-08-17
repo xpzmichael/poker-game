@@ -16,10 +16,11 @@ export default function Controls({ onJoin, onStartHand, onReset, playerName, onA
   const can = (action) => validActions?.find((a) => a.action === action)
 
   const btnBase =
-    'inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-soft transition ' +
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-poker-yellow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-poker-green'
-  const btnGreen = `${btnBase} bg-gradient-to-b from-green-500 to-green-600 hover:from-green-500/95 hover:to-green-600/95 active:translate-y-[1px]`
-  const btnGray  = `${btnBase} bg-white/10 hover:bg-white/15`
+    'inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-soft transition cursor-pointer ' +
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-poker-yellow/70 focus-visible:ring-offset-2 focus-visible:ring-offset-poker-green ';
+
+const btnGreen = `${btnBase} bg-green-500 hover:bg-green-600 active:bg-green-700`;
+const btnGray = `${btnBase} bg-white/10 hover:bg-white/15`;
 
   return (
     <div className="space-y-3">
@@ -40,6 +41,11 @@ export default function Controls({ onJoin, onStartHand, onReset, playerName, onA
         <h3 className="text-sm text-white/90">Your Turn — Available Actions:</h3>
 
         <div className="my-2 flex flex-wrap gap-2">
+          {can('fold') && (
+            <button className={btnGray} onClick={() => onAction('fold')}>
+              Fold
+            </button>
+          )}
           {can('check') && <button className={btnGray} onClick={() => onAction('check')}>Check</button>}
           {can('call') && (
             <button className={btnGray} onClick={() => onAction('call', can('call').amount || 0)}>

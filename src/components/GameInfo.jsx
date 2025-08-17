@@ -14,10 +14,10 @@ export default function GameInfo({ gameState }) {
 
   return (
     <section className="bg-poker-table/90 backdrop-blur p-4 rounded-xl2 shadow-soft">
-      <div className="grid md:grid-cols-3 gap-3 items-center">
-        <div className="text-poker-yellow font-bold text-lg">Phase: {gameState.phase || 'waiting'}</div>
+      <div className="grid grid-cols-1 gap-6 items-center">
+        <div className="text-poker-yellow font-bold text-lg text-center">Phase: {gameState.phase || 'waiting'}</div>
         <div className="text-center">{potText()}</div>
-        <div className="md:text-right">Blinds: $10 / $20</div>
+        <div className="text-center">Blinds: $10 / $20</div>
       </div>
     </section>
   )

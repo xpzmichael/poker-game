@@ -11,3 +11,15 @@
   
   --radius-xl2: 1rem;
 }
+
+@keyframes swingX {
+  0%   { transform: translateX(-6px); }
+  50%  { transform: translateX(5px); } 
+  100% { transform: translateX(-6px); }
+}
+
+.swing-x {
+  display: inline-block;
+  animation: swingX 2s infinite ease-in-out; /* full round trip = 2s */
+}
+

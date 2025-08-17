@@ -22,7 +22,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    addLog('Welcome to Poker Game Test!')
+    addLog('Welcome to Poker Game!')
     addLog('Enter your name and click "Join Game" to start playing.')
 
     socket.on('connect', () => addLog('Connected to server', 'success'))
@@ -71,7 +71,7 @@ export default function App() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <header className="text-center">
-        <h1 className="text-3xl font-bold tracking-wide">🃏 Poker Game Test 🃏</h1>
+        <h1 className="text-3xl font-bold tracking-wide">🃏 Poker Game 🃏</h1>
       </header>
 
       <section className="bg-poker-table/90 backdrop-blur rounded-xl2 p-4 shadow-table">
