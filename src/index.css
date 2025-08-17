@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-poker-green: #0f5132;
+  --color-poker-table: #2d5a3d;
+  --color-poker-yellow: #ffc107;
+  --color-poker-dealer: #ff0000;
+  
+  --shadow-table: 0 8px 24px rgba(0,0,0,0.25);
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.18);
+  
+  --radius-xl2: 1rem;
+}
