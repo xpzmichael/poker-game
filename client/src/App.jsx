@@ -4,9 +4,9 @@ import Players from './components/Players'
 import GameInfo from './components/GameInfo'
 import CommunityCards from './components/CommunityCards'
 import HoleCards from './components/HoleCards'
-import HoleCardsPlaceHolder from './components/HoleCardsPlaceHolder'
 import Log from './components/Log'
 import Showdown from './components/Showdown'
+import EndRoundNote from './components/EndRoundNote'
 import './index.css'
 
 // hooks & services
@@ -29,7 +29,7 @@ export default function App() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <header className="text-center">
-        <h1 className="text-3xl font-bold tracking-wide">🃏 Poker Game 🃏</h1>
+        <h1 className="text-3xl mt-4 font-bold tracking-wide">🃏 Poker Game 🃏</h1>
       </header>
 
       <section className="bg-poker-table/90 backdrop-blur rounded-xl2 p-4 shadow-table">
@@ -46,6 +46,9 @@ export default function App() {
       </section>
 
       <GameInfo gameState={gameState} />
+      
+      <Showdown showdown={gameState.showdown} />
+
 
       <section className="bg-poker-table/90 backdrop-blur rounded-xl2 px-5 py-8 shadow-table">
         <Players
@@ -55,15 +58,13 @@ export default function App() {
           dealerSeat={gameState.dealerSeat}
           phase={gameState.phase}
         />
-        {gameState.phase !== 'waiting' && <CommunityCards community={gameState.community || []} />}
+         <CommunityCards community={gameState.community || []} />
+        {gameState.phase === 'waiting' && gameState.community && <EndRoundNote />}
       </section>
 
-      {gameState.phase === 'waiting' ? (
-        <HoleCardsPlaceHolder />
-      ) : (
-        <HoleCards holeCards={privateState.holeCards} />
-      )}
-      <Showdown showdown={gameState.showdown} />
+      <HoleCards holeCards={privateState.holeCards} />
+
+
 
       <Log logs={logs} />
     </div>

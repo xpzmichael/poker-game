@@ -24,6 +24,7 @@ export default function Players({ player_name, players, currentPlayerSeat, deale
 
         const status = []
         if (phase === 'waiting') {
+          status = []
           if (p.ready) status.push('👍 Ready')
         } else {
           if (p.seat === dealerSeat) status.push('🔴 Dealer')
