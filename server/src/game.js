@@ -1,7 +1,7 @@
 import { makeDeck, shuffleInPlace } from './deck.js';
-import { evalHand } from 'poker-evaluator';
 import { createSidePots, distributePots } from './pot-manager.js';
 import { validateAction, getValidActions } from './action-validator.js';
+import { bestFive } from './poker-helper.js';
 
 class Game {
   
@@ -414,12 +414,12 @@ class Game {
     const active = this.players.filter(p => !p.folded);
     const ranks = active.map(p => {
       const all = [...p.hole, ...this.community];
-      const res = evalHand(all);
+      const res = bestFive(all);
       return { 
         player: p, 
         value: res.value, 
         handName: res.handName,
-        hand: res.hand || all // fallback if evaluator doesn't return hand
+        hand: res.hand || p.hole // if bestFive does not return a hand, fallback to player's hole cards
       };
     });
 

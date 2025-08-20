@@ -1,9 +1,21 @@
 import { io } from 'socket.io-client'
 
-// Example if backend runs locally on port 3000:
-const socket = io('http://localhost:3000', {
+// Auto-detect server URL from current page location
+const getServerUrl = () => {
+  const protocol = window.location.protocol
+  const hostname = window.location.hostname
+  const port = '3000' // Your server port
+  
+  const serverUrl = `${protocol}//${hostname}:${port}`
+  console.log('Auto-detected server URL:', serverUrl)
+  
+  return serverUrl
+}
+
+const socket = io(getServerUrl(), {
   withCredentials: true,
-  transports: ['websocket'] // optional but can help avoid polling delays
+  transports: ['websocket', 'polling'] // Added polling as fallback
 })
+
 
 export default socket

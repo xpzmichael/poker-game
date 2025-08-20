@@ -47,8 +47,8 @@ export default function App() {
 
       <GameInfo gameState={gameState} />
       
-      <Showdown showdown={gameState.showdown} />
 
+      <Showdown showdown={gameState.showdown} />
 
       <section className="bg-poker-table/90 backdrop-blur rounded-xl2 px-5 py-8 shadow-table">
         <Players
@@ -58,13 +58,12 @@ export default function App() {
           dealerSeat={gameState.dealerSeat}
           phase={gameState.phase}
         />
+        {gameState.phase === 'waiting' && gameState.community.length === 0 && <EndRoundNote />}
          <CommunityCards community={gameState.community || []} />
-        {gameState.phase === 'waiting' && gameState.community && <EndRoundNote />}
       </section>
 
+
       <HoleCards holeCards={privateState.holeCards} />
-
-
 
       <Log logs={logs} />
     </div>

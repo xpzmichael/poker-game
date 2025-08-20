@@ -2,11 +2,25 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import path from 'path';
+import { fileURLToPath } from "url";
 import Game from './src/game.js';
 import dotenv from 'dotenv';
+import { getLocalIp, showQRCode } from "./src/services/network.js";
+
 dotenv.config();
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
+// Serve the built React client
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("{*splat}", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -301,7 +315,16 @@ io.on('connection', socket => {
   socket.emit('room_state', game.getPublicState());
 });
 
-server.listen(PORT, () => {
-  console.log(`Poker server running on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  const localIp = getLocalIp();
+  const url = `http://${localIp}:${PORT}`;
+
+  console.log(`Poker server running at:`);
+  console.log(`   Local:   http://localhost:${PORT}`);
+  console.log(`   Network: ${url}`);
+
+  // Show QR code in terminal
+  showQRCode(url);
+
   console.log(`Game started with blinds: ${game.smallBlind}/${game.bigBlind}`);
 });

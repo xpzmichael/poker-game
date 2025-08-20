@@ -17,7 +17,8 @@ const SUIT_COLORS = {
 export default function PokerCard({ card }) {
     if (!card) return null
 
-    const rank = card.slice(0, -1).toUpperCase()
+    let rank = card.slice(0, -1).toUpperCase()
+    if (rank === 'T') rank = '10'
     const suit = card.slice(-1).toLowerCase()
     const symbol = SUIT_SYMBOLS[suit] || '?'
     const colorClass = SUIT_COLORS[suit] || 'text-black'

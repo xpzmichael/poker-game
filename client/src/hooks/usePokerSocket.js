@@ -9,7 +9,7 @@ export default function usePokerSocket({ addLog, setGameState, setPrivateState, 
     socket.on('connect', () => addLog('Connected to server', 'success'))
     socket.on('disconnect', () => addLog('Disconnected from server', 'error'))
 
-    socket.on('room_state', (state) => setGameState(state))
+    socket.on('room_state', (state) => setGameState({ ...state }))
     socket.on('private_state', (state) => {
       setPrivateState(state)
       setValidActions(state?.validActions || [])

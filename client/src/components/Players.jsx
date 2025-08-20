@@ -24,7 +24,7 @@ export default function Players({ player_name, players, currentPlayerSeat, deale
 
         const status = []
         if (phase === 'waiting') {
-          status = []
+          status.length = 0
           if (p.ready) status.push('👍 Ready')
         } else {
           if (p.seat === dealerSeat) status.push('🔴 Dealer')
@@ -34,7 +34,7 @@ export default function Players({ player_name, players, currentPlayerSeat, deale
         }
 
         return (
-          <div key={p.seat} className={classes.join(' ')}>
+          <div key={`${p.seat}-${phase}-${currentPlayerSeat}`} className={classes.join(' ')}>
             <div className="text-base font-semibold">{p.name}</div>
             {p.name === player_name && <div className="text-xs sm:text-sm text-white/80"> (👤 You)</div>}
             <div className="text-sm sm:text-base text-white">Chips: ${p.chips}</div>
