@@ -18,13 +18,12 @@ export default function Players({ player_name, players, currentPlayerSeat, deale
           'backdrop-blur'
         ]
 
-        if (p.name === player_name) classes.push('border-2', 'border-poker-yellow')
-        if (p.folded) classes.push('opacity-60')
-        if (p.allIn) classes.push('ring-2', 'text-amber-300')
-
         const status = []
+        if (p.name === player_name) classes.push('border-1', 'border-poker-yellow')
+        if (p.folded) classes.push('opacity-60')
+        if (p.allIn) classes.push('ring-3', 'text-amber-300')
+
         if (phase === 'waiting') {
-          status.length = 0
           if (p.ready) status.push('👍 Ready')
         } else {
           if (p.seat === dealerSeat) status.push('🔴 Dealer')

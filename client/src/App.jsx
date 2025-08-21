@@ -58,7 +58,7 @@ export default function App() {
           dealerSeat={gameState.dealerSeat}
           phase={gameState.phase}
         />
-        {gameState.phase === 'waiting' && gameState.community.length === 0 && <EndRoundNote />}
+        {gameState.phase === 'waiting' && gameState.community?.length > 0 && <EndRoundNote />}
          <CommunityCards community={gameState.community || []} />
       </section>
 

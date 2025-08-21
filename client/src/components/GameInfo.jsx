@@ -17,7 +17,7 @@ export default function GameInfo({ gameState }) {
 
   return (
     <section className="bg-poker-table/90 backdrop-blur p-4 rounded-xl2 shadow-soft">
-      <div className="grid grid-cols-1 gap-6 items-center">
+      <div key={`${gameState.phase}-${gameState.pot}`} className="grid grid-cols-1 gap-6 items-center">
         <div className="font-bold text-center">
           <span className='text-white/80 text-base'>
             Phase:&nbsp;
