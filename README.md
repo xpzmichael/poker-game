@@ -25,7 +25,7 @@ A multiplayer poker game that allows players to join and play together over the 
      cd server
      npm install
      ```
-   - For the client (if building frontend):
+   - For the client:
      ```
      cd client
      npm install
